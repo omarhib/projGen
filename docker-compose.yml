@@ -1,14 +1,18 @@
 version: '3'
-
 services:
-  main_app:
+  web:
     build: ./main_app
     ports:
       - "5000:5000"
-    depends_on:
-      - phi2_model
-
-  phi2_model:
+    volumes:
+      - .:/app
+    environment:
+      FLASK_ENV: development
+  phi2:
     build: ./phi2_model
     ports:
-      - "8000:8000"
+      - "5001:5000"
+    volumes:
+      - ./phi2_model:/app
+    environment:
+      FLASK_ENV: development
