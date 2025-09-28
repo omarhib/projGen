@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  main_app:
+    build: ./main_app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - phi2_model
+
+  phi2_model:
+    build: ./phi2_model
+    ports:
+      - "8000:8000"
